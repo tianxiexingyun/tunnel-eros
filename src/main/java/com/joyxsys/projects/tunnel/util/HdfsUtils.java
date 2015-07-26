@@ -61,7 +61,7 @@ public class HdfsUtils {
 	}
 
 	/**
-	 * 
+	 * 关闭占用的系统资源
 	 */
 	public static void close() {
 		try {

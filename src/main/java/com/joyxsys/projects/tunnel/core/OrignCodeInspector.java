@@ -22,7 +22,7 @@ import com.joyxsys.projects.tunnel.var.Constants;
 
 /**
  * @ClassName: OrignCodeCount 
- * @Description: 对tunnel的orign code进行检查，筛选出已删除的 指令记录
+ * @Description: 源码分析程序核心类，主要实现了MR，
  * @author robin
  * @date 2015年7月12日 下午9:31:23 
  *
@@ -30,6 +30,14 @@ import com.joyxsys.projects.tunnel.var.Constants;
 public class OrignCodeInspector {
 
 	private static final Logger logger = LoggerFactory.getLogger(OrignCodeInspector.class);
+	/**
+	 * hadoop配置信息
+	 */
+	Configuration conf;
+
+	public OrignCodeInspector(Configuration conf) {
+		this.conf = conf;
+	}
 
 	/**
 	 * @ClassName: MyMapper 
@@ -99,8 +107,11 @@ public class OrignCodeInspector {
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
-		Configuration conf = new Configuration();
+	/**
+	 * 启动MapReduce任务
+	 * @throws Exception
+	 */
+	public void start() throws Exception {
 
 		Job job = Job.getInstance(conf, "orign code check");//指定任务名，根据配置文件创建任务
 
@@ -127,12 +138,10 @@ public class OrignCodeInspector {
 		HdfsUtils.deleteDir(Constants.OUTPUT_FILE_PATH);
 		//设置输出路径
 		FileOutputFormat.setOutputPath(job, new Path(Constants.OUTPUT_FILE_PATH));
-
+		//等待程序执行完成，并输出结果
 		if (job.waitForCompletion(true)) {
 			showOnStdOut();
 		}
-		//关闭HdfsUtils使用的系统资源
-		HdfsUtils.close();
 	}
 
 	/**

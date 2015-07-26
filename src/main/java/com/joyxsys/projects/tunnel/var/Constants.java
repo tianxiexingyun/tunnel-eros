@@ -11,6 +11,10 @@ public class Constants extends ConfigurableContants {
 		init("/sys.properties");
 	}
 	/**
+	 * 日志文件在本地存储位置
+	 */
+	public static final String LOCAl_FILE = getProperty("local_file", "/home/robin/jdevelop/workspace/tunnel-eros/doc/origncode.log");
+	/**
 	 * 处理中的orign code输入路径,(包括hdfs文件系统和本地文件系统)
 	 */
 	public static final String INPUT_FILE_PATH = getProperty("input_path", "hdfs://localhost:9000/user/robin/origncode.log");
