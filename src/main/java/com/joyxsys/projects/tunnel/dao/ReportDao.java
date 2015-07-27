@@ -19,15 +19,15 @@ public class ReportDao extends BaseDao {
 
 	/**
 	 * 向数据库中插入记录
-	 * @param sn
-	 * 			设备序列号
+	 * @param occurenceTime
+	 * 			指令接收时间
 	 * @param code
 	 * 			指令源码
 	 * @return
 	 */
-	public int insert(String sn, String code) {
+	public int insert(String occurenceTime, String code) {
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("occurence_time", sn);
+		params.put("occurence_time", occurenceTime);
 		params.put("orign_code", code);
 		return insert(params);
 	}

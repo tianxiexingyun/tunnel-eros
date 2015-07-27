@@ -181,7 +181,7 @@ public class HdfsUtils {
 	 * 			hdfs中的文件
 	 * @throws IOException
 	 */
-	public static void put(String src, String dst) throws IOException {
+	public static void copyFromLocal(String src, String dst) throws IOException {
 		Path srcPath = new Path(src);
 		Path dstPath = new Path(dst);
 		fs.copyFromLocalFile(srcPath, dstPath);

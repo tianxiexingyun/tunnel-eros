@@ -25,7 +25,7 @@ public class Main {
 			//设置HdfsUtil使用的配置信息
 			HdfsUtils.init(conf);
 			//将文件放入HDFS
-			HdfsUtils.put(Constants.LOCAl_FILE, Constants.INPUT_FILE_PATH);
+			HdfsUtils.copyFromLocal(Constants.LOCAl_FILE, Constants.INPUT_FILE_PATH);
 			//启动源码分析程序
 			new OrignCodeInspector(conf).start();
 		} catch (Exception e) {
